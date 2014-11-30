@@ -89,7 +89,7 @@ const char* get_rel(Language lang, int index) {
     case ES:
       return RELS_ES[index];
       break;
-    // TODO : personalize this if hour is one of {MIDx, ONE, ELEVEN} with RELS_FR_MID or RELS_FR_ONE or RELS_FR_ELEVEN
+    // Personalize this if hour is one of {MIDx, ONE, ELEVEN} with RELS_FR_MID or RELS_FR_ONE or RELS_FR_ELEVEN
     case FR:
       if ((g_hours == 0) || (g_hours == 12)) {
         return RELS_FR_MID[index];
