@@ -159,6 +159,7 @@ static GTextAlignment lookup_text_alignment(int align_key)
 static void configureBoldLayer(TextLayer *textlayer)
 {
 	text_layer_set_font(textlayer, fonts_get_system_font(FONT_KEY_BITHAM_42_BOLD));
+	//text_layer_set_font(textlayer, fonts_get_system_font(FONT_KEY_GOTHIC_28_BOLD));
 	text_layer_set_text_color(textlayer, GColorWhite);
 	text_layer_set_background_color(textlayer, GColorClear);
 	text_layer_set_text_alignment(textlayer, lookup_text_alignment(text_align));
@@ -168,6 +169,7 @@ static void configureBoldLayer(TextLayer *textlayer)
 static void configureLightLayer(TextLayer *textlayer)
 {
 	text_layer_set_font(textlayer, fonts_get_system_font(FONT_KEY_BITHAM_42_LIGHT));
+	//text_layer_set_font(textlayer, fonts_get_system_font(FONT_KEY_GOTHIC_28));
 	text_layer_set_text_color(textlayer, GColorWhite);
 	text_layer_set_background_color(textlayer, GColorClear);
 	text_layer_set_text_alignment(textlayer, lookup_text_alignment(text_align));

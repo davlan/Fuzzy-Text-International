@@ -89,9 +89,24 @@ const char* get_rel(Language lang, int index) {
     case ES:
       return RELS_ES[index];
       break;
+    // TODO : personalize this if hour is one of {MIDx, ONE, ELEVEN} with RELS_FR_MID or RELS_FR_ONE or RELS_FR_ELEVEN
     case FR:
-      return RELS_FR[index];
-      break;
+      if ((g_hours == 0) || (g_hours == 12)) {
+        return RELS_FR_MID[index];
+        break;
+      }
+      else if ((g_hours == 1) || (g_hours == 13)) {
+        return RELS_FR_ONE[index];
+        break;
+      }
+      else if ((g_hours == 11) || (g_hours == 23)) {
+        return RELS_FR_ELEVEN[index];
+        break;
+      }
+      else { 
+        return RELS_FR[index];
+        break;
+      }
     case NO:
       return RELS_NO[index];
       break;
@@ -114,6 +129,8 @@ void time_to_words(Language lang, int hours, int minutes, int seconds, char* wor
   int half_mins  = (2 * minutes) + (seconds / 30);
   int rel_index  = ((half_mins + 5) / (2 * 5)) % 12;
   int hour_index;
+  
+  g_hours = hours;
 
   if (rel_index == 0 && minutes > 30) {
     hour_index = (hours + 1) % 24;

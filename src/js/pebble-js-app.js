@@ -1,4 +1,4 @@
-var VERSION = "1.2.1";
+var VERSION = "1.3";
 
 var isReady = false;
 var callbacks = [];
