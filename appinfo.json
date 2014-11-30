@@ -3,8 +3,8 @@
     "capabilities": [
         "configurable"
     ],
-    "companyName": "David Langlais, Jesse Hallett",
-    "longName": "Flouloge Internationale",
+    "companyName": "Jesse Hallett, David Langlais for french corrections",
+    "longName": "Fuzzy Text International",
     "projectType": "native",
     "resources": {
         "media": [
@@ -15,7 +15,7 @@
             }
         ]
     },
-    "shortName": "Flouloge",
+    "shortName": "Fuzzy Int'l",
     "uuid": "ad506250-fd4b-453f-8afe-bfda78f7d290",
     "versionCode": 4,
     "versionLabel": "1.3",
