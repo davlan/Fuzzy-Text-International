@@ -13,5 +13,3 @@ typedef enum {
 } Language;
 
 void time_to_words(Language lang, int hours, int minutes, int seconds, char* words, size_t length);
-
-static int g_hours = 0;

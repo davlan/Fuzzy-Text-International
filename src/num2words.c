@@ -75,7 +75,7 @@ const char* get_hour(Language lang, int index) {
   }
 }
 
-const char* get_rel(Language lang, int index) {
+const char* get_rel(Language lang, int index, int hours, int minutes, int seconds) {
   switch (lang) {
     case CA:
       return RELS_CA[index];
@@ -91,15 +91,27 @@ const char* get_rel(Language lang, int index) {
       break;
     // Personalize this if hour is one of {MIDx, ONE, ELEVEN} with RELS_FR_MID or RELS_FR_ONE or RELS_FR_ELEVEN
     case FR:
-      if ((g_hours == 0) || (g_hours == 12)) {
+      if ((hours == 0) || (hours == 12)) {
+        if (((minutes == 57) && (seconds >= 30)) || ((minutes >= 58) && (minutes <= 59))) {
+          return RELS_FR_ONE[0];
+          break;
+        }
         return RELS_FR_MID[index];
         break;
       }
-      else if ((g_hours == 1) || (g_hours == 13)) {
+      else if ((hours == 1) || (hours == 13)) {
+        if (((minutes == 57) && (seconds >= 30)) || ((minutes >= 58) && (minutes <= 59))) {
+          return RELS_FR[0];
+          break;
+        }
         return RELS_FR_ONE[index];
         break;
       }
-      else if ((g_hours == 11) || (g_hours == 23)) {
+      else if ((hours == 11) || (hours == 23)) {
+        if (((minutes == 57) && (seconds >= 30)) || ((minutes >= 58) && (minutes <= 59))) {
+          return RELS_FR_MID[0];
+          break;
+        }
         return RELS_FR_ELEVEN[index];
         break;
       }
@@ -130,8 +142,6 @@ void time_to_words(Language lang, int hours, int minutes, int seconds, char* wor
   int rel_index  = ((half_mins + 5) / (2 * 5)) % 12;
   int hour_index;
   
-  g_hours = hours;
-
   if (rel_index == 0 && minutes > 30) {
     hour_index = (hours + 1) % 24;
   }
@@ -141,7 +151,7 @@ void time_to_words(Language lang, int hours, int minutes, int seconds, char* wor
 
   const char* hour = get_hour(lang, hour_index);
   const char* next_hour = get_hour(lang, (hour_index + 1) % 24);
-  const char* rel  = get_rel(lang, rel_index);
+  const char* rel  = get_rel(lang, rel_index, hours, minutes, seconds);
 
   remaining -= interpolate_and_append(words, remaining, rel, hour, next_hour);
 
